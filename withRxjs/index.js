@@ -22,6 +22,5 @@ const hasPassed = from(students.concat(generatedStudents)).pipe(
 );
 
 hasPassed.subscribe(x => console.log(x));
-console.log("passed ", hasPassed.getValue);
 
 console.timeEnd("Time elapsed");
