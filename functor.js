@@ -23,3 +23,4 @@ console.log("newFunctor1 : ", newFunctor1);
 // bind compose wrapped values with each other
 
 // https://www.softdevtube.com/2019/01/08/pragmatic-guide-to-functional-geekery/
+// https://www.youtube.com/watch?v=QyJZzq0v7Z4
