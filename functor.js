@@ -27,13 +27,13 @@ console.log("newFunctor1 : ", newFunctor1);
 // https://www.softdevtube.com/2019/01/08/pragmatic-guide-to-functional-geekery/
 // https://www.youtube.com/watch?v=QyJZzq0v7Z4
 
-const Monad = value => ({
-  map: transform => Monad(transform(value)),
+const Functor = value => ({
+  map: transform => Functor(transform(value)),
   fold: f => f(value)
 });
 
-const transformation = Monad("thomas rubattel")
+const withTitle = Functor("thomas rubattel")
   .map(v => `M. ${v}`)
   .fold(e => e);
 
-console.log("transformation", transformation);
+console.log("withTitle", withTitle);
