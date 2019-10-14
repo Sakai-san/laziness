@@ -11,14 +11,23 @@ const studentsNotWellFormed = [
 
 const moreStudents = [...students, ...studentsNotWellFormed];
 
-const passedStudents = List.fromArray(moreStudents)
+const passedStudent2 = List.fromArray(moreStudents)
   .map(st => ({
     ...st,
-    Grades: st.grades ? Maybe.of(st.grades) : Maybe.fromNull()
+    Grades: st && st.grades ? Maybe.of(st.grades) : Maybe.fromNull([])
   }))
   .map(st => ({
     ...st,
-    avg: Either.of(st.Grades)
-  }));
+    Sum: st.Grades.fold()(v => v.reduce((acc, current) => acc + current, 0))
+  }))
+  .map(st => ({
+    ...st,
+    Avg:
+      st.Grades.fold()(v => v.length) > 0
+        ? st.Sum / st.Grades.fold()(v => v.length)
+        : 0
+  }))
+  .filter(st => st.Avg >= 4.0)
+  .toArray();
 
-console.log("passedStudents", passedStudents.flatMap(s => s));
+console.log("passed", passedStudent2);
