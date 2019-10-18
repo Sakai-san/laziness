@@ -1,3 +1,7 @@
+// TO CHECK
+// https://www.youtube.com/watch?v=ZQSU4geXAxM
+// https://medium.com/@tzehsiang/javascript-functor-applicative-monads-in-pictures-b567c6415221#.rdwll124i
+
 const { Just, Maybe, Some } = require("monet");
 
 // hello: string -> string
