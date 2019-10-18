@@ -15,7 +15,7 @@ console.log(hello(trimed("       thomas  ")));
 
 console.log(
   Maybe.Just("    thomas   ")
-    .bind(val => Maybe.Just(val.trim()))
-    .bind(val => Maybe.Just("Hello " + val))
+    .flatMap(val => Maybe.Just(val.trim()))
+    .flatMap(val => Maybe.Just("Hello " + val))
     .just()
 );
