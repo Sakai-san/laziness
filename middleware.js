@@ -1,20 +1,23 @@
-const { withAverage, compose } = require("./lib/studentsUtils");
-const withAge = student => ({
-  ...student,
-  age: new Date().getFullYear() - parseInt(student.birthDate.split("-")[0])
-});
+const { withAverage, getAverage, compose } = require("./lib/studentsUtils");
 
-const decorate = f1 => f => args => f1(f(args));
+const avgMiddleware = (student, next) => {
+  student.avg = getAverage(student.grades);
+  next(student);
+};
 
-decorate(args => console.log(args))(x => 2 * x)(5);
+const ageMiddleware = (student, next) => {
+  student.age =
+    new Date().getFullYear() - parseInt(student.birthDate.split("-")[0]);
+};
 
-const decorated = compose(
-  withAverage,
-  withAge
-)({
+const decorate = f1 => f => args => f1(args, f);
+
+const toma = {
   name: "Thomas",
   birthDate: "1979-04-22",
   grades: [4, 3, 1]
-});
+};
 
-console.log("decorated", decorated);
+console.log("before", toma);
+decorate(avgMiddleware)(ageMiddleware)(toma);
+console.log("after", toma);
